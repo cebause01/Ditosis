@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ditosis - Premium Synthetic Data Solutions for AI Training and Fine-tuning">
+  <meta name="keywords" content="synthetic data, AI training, machine learning, data generation, fine-tuning">
+  <title>Ditosis | Synthetic Data for AI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/ditosis-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00F5A0" />
+              <stop offset="100%" stop-color="#00D9F5" />
+            </linearGradient>
+          </defs>
+          <path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" 
+            stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+          <circle cx="16" cy="8" r="2" fill="url(#logoGrad)"/>
+          <circle cx="16" cy="24" r="2" fill="url(#logoGrad)"/>
+        </svg>
+        <span>Ditosis</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#features" class="nav-link">Platform</a>
+        <a href="#use-cases" class="nav-link">Use Cases</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+      </div>
+
+      <div class="navbar-actions">
+        <a href="#request" class="btn btn-secondary">Contact Us</a>
+        <a href="#request" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#services" class="mobile-nav-link">Services</a>
+      <a href="#features" class="mobile-nav-link">Platform</a>
+      <a href="#use-cases" class="mobile-nav-link">Use Cases</a>
+      <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+      <div class="mobile-menu-actions">
+        <a href="#request" class="btn btn-primary" style="width: 100%;">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="hero-particles" id="particles"></div>
+    </div>
+
+    <div class="container hero-content animate-on-scroll">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3l1.912 5.813a2 2 0 001.272 1.272L21 12l-5.813 1.912a2 2 0 00-1.272 1.272L12 21l-1.912-5.813a2 2 0 00-1.272-1.272L3 12l5.813-1.912a2 2 0 001.272-1.272L12 3z"/>
+        </svg>
+        <span>Powering the next generation of AI</span>
+      </div>
+
+      <h1 class="hero-title">
+        Synthetic Data that <span class="gradient-text">transforms</span><br>
+        AI development
+      </h1>
+
+      <p class="hero-description">
+        Generate high-quality, diverse synthetic datasets for AI training and fine-tuning.
+        Privacy-compliant, infinitely scalable, and tailored to your exact specifications.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#request" class="btn btn-primary btn-lg">
+          Request Data
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#about" class="btn btn-secondary btn-lg">Learn More</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <div class="hero-stat-content">
+            <span class="hero-stat-value">10B+</span>
+            <span class="hero-stat-label">Data Points Generated</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+            </svg>
+          </div>
+          <div class="hero-stat-content">
+            <span class="hero-stat-value">99.9%</span>
+            <span class="hero-stat-label">Quality Accuracy</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="hero-stat-content">
+            <span class="hero-stat-value">50x</span>
+            <span class="hero-stat-label">Faster than Manual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-trusted">
+        <p class="hero-trusted-label">Trusted by leading AI companies</p>
+        <div class="hero-trusted-logos">
+          <span class="trusted-logo">OpenAI</span>
+          <span class="trusted-logo">Google</span>
+          <span class="trusted-logo">Meta</span>
+          <span class="trusted-logo">Microsoft</span>
+          <span class="trusted-logo">NVIDIA</span>
+          <span class="trusted-logo">Anthropic</span>
+          <span class="trusted-logo">Stability AI</span>
+          <span class="trusted-logo">Hugging Face</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content animate-on-scroll">
+          <span class="badge">About Ditosis</span>
+          <h2 class="about-title">
+            The future of AI training data is <span class="gradient-text">synthetic</span>
+          </h2>
+          <p class="about-description">
+            Traditional data collection is slow, expensive, and privacy-risky. 
+            Ditosis generates high-quality synthetic datasets that match real-world 
+            distributions while protecting privacy and accelerating your AI development.
+          </p>
+          <p class="about-description">
+            Our proprietary generation engines create text, images, audio, video, 
+            and tabular data that's indistinguishable from real data—but with 
+            complete control over every parameter.
+          </p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-value">500+</span>
+              <span class="about-stat-label">Projects Delivered</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-value">50+</span>
+              <span class="about-stat-label">Enterprise Clients</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-value">24/7</span>
+              <span class="about-stat-label">Support Available</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-highlights animate-on-scroll">
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="highlight-content">
+              <h3 class="highlight-title">Privacy-First</h3>
+              <p class="highlight-description">No real user data. Fully synthetic, fully compliant with GDPR, HIPAA, and more.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z"/>
+              </svg>
+            </div>
+            <div class="highlight-content">
+              <h3 class="highlight-title">Infinite Scale</h3>
+              <p class="highlight-description">Generate millions of data points on demand. No data collection bottlenecks.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <div class="highlight-content">
+              <h3 class="highlight-title">Precision Control</h3>
+              <p class="highlight-description">Define exact distributions, edge cases, and scenarios your model needs.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <div class="highlight-content">
+              <h3 class="highlight-title">Enterprise Security</h3>
+              <p class="highlight-description">SOC 2 compliant infrastructure. Your data specifications stay confidential.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Our Services</span>
+        <h2 class="section-title">Powering any <span class="gradient-text">data type</span></h2>
+        <p class="section-description">From text to multimodal, we generate the exact data your AI models need.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(0, 245, 160, 0.1); border-color: rgba(0, 245, 160, 0.3); color: #00F5A0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Text Data</h3>
+          <p class="service-description">Generate conversations, documents, code, Q&A pairs, and any text format for NLP training.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #00F5A0;"></span>Multi-language support</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #00F5A0;"></span>Custom vocabularies</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #00F5A0;"></span>Style matching</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(0, 217, 245, 0.1); border-color: rgba(0, 217, 245, 0.3); color: #00D9F5;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Image Data</h3>
+          <p class="service-description">Synthetic images for computer vision, from product photos to medical imaging.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #00D9F5;"></span>Custom resolutions</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #00D9F5;"></span>Annotation included</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #00D9F5;"></span>Scene control</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.3); color: #a855f7;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 10v3M6 6v11M10 3v18M14 8v7M18 5v13M22 10v3"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Audio Data</h3>
+          <p class="service-description">Speech, music, and environmental audio with precise acoustic properties.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #a855f7;"></span>Voice cloning</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #a855f7;"></span>Noise profiles</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #a855f7;"></span>Multi-speaker</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.3); color: #ec4899;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Video Data</h3>
+          <p class="service-description">Synthetic video sequences for action recognition, tracking, and more.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #ec4899;"></span>Frame-accurate labels</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #ec4899;"></span>Motion control</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #ec4899;"></span>Scene composition</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: #f59e0b;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v18M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Tabular Data</h3>
+          <p class="service-description">Structured datasets that preserve statistical properties while ensuring privacy.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #f59e0b;"></span>Distribution matching</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #f59e0b;"></span>Correlation preservation</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #f59e0b;"></span>Schema support</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon" style="background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.3); color: #06b6d4;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Multimodal Data</h3>
+          <p class="service-description">Combined text, image, audio, and video datasets for complex AI systems.</p>
+          <ul class="service-features">
+            <li class="service-feature"><span class="feature-dot" style="background: #06b6d4;"></span>Cross-modal alignment</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #06b6d4;"></span>Unified annotations</li>
+            <li class="service-feature"><span class="feature-dot" style="background: #06b6d4;"></span>Custom schemas</li>
+          </ul>
+          <button class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="section features">
+    <div class="features-bg">
+      <div class="features-glow"></div>
+    </div>
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Platform</span>
+        <h2 class="section-title">Built on a <span class="gradient-text">powerful foundation</span></h2>
+        <p class="section-description">From generation to delivery, every layer of our platform is engineered for quality and scale.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">AI-Native Generation</h3>
+          <p class="feature-description">State-of-the-art generative models engineered specifically for creating training-quality synthetic data.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Lightning Fast</h3>
+          <p class="feature-description">Generate millions of data points in hours, not months. Parallel processing across distributed infrastructure.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Iterative Refinement</h3>
+          <p class="feature-description">Continuous feedback loop to improve data quality based on your model performance metrics.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Quality Analytics</h3>
+          <p class="feature-description">Comprehensive quality reports with distribution analysis, diversity metrics, and bias detection.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Custom Pipelines</h3>
+          <p class="feature-description">Build custom generation pipelines with our API. Integrate directly into your ML workflows.</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Secure Delivery</h3>
+          <p class="feature-description">Encrypted transfers, signed datasets, and secure cloud storage. Your data stays protected.</p>
+        </div>
+      </div>
+
+      <div class="platform-visual animate-on-scroll">
+        <div class="platform-card">
+          <div class="platform-header">
+            <div class="platform-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="platform-title">ditosis.config.py</span>
+          </div>
+          <div class="platform-code">
+            <pre><code>from ditosis import DataGenerator, Config
+
+config = Config(
+    data_type="text",
+    format="conversation",
+    samples=1_000_000,
+    languages=["en", "es", "zh"],
+    distribution={
+        "casual": 0.4,
+        "technical": 0.3,
+        "formal": 0.3
+    }
+)
+
+generator = DataGenerator(config)
+dataset = generator.generate()
+
+# Quality validation
+report = dataset.validate()
+print(f"Quality Score: {report.score}%")
+
+dataset.export("s3://your-bucket/training-data/")</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section id="use-cases" class="section use-cases">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Use Cases</span>
+        <h2 class="section-title">Built for <span class="gradient-text">every industry</span></h2>
+        <p class="section-description">From healthcare to autonomous vehicles, our synthetic data powers AI across sectors.</p>
+      </div>
+
+      <div class="use-cases-grid">
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #00F5A0 0%, #00D9F5 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="10" rx="2"/>
+              <circle cx="12" cy="5" r="2"/>
+              <path d="M12 7v4M8 16h.01M16 16h.01"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">LLM Training</h3>
+            <p class="use-case-description">Generate diverse conversation data, instruction-following examples, and reasoning chains for foundation model training.</p>
+          </div>
+        </div>
+
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4.8 2.3A.3.3 0 105 2H4a2 2 0 00-2 2v5a6 6 0 006 6v0a6 6 0 006-6V4a2 2 0 00-2-2h-1a.2.2 0 10.3.3"/>
+              <path d="M8 15v1a6 6 0 006 6v0a6 6 0 006-6v-4"/>
+              <circle cx="20" cy="10" r="2"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">Healthcare AI</h3>
+            <p class="use-case-description">HIPAA-compliant synthetic medical records, imaging data, and clinical notes for healthcare AI development.</p>
+          </div>
+        </div>
+
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 17H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-1"/>
+              <polygon points="12 15 17 21 7 21 12 15"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">Autonomous Vehicles</h3>
+            <p class="use-case-description">Synthetic driving scenarios, sensor data, and edge cases for self-driving system training.</p>
+          </div>
+        </div>
+
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">E-commerce</h3>
+            <p class="use-case-description">Product descriptions, customer reviews, and transaction data for recommendation systems.</p>
+          </div>
+        </div>
+
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">Fraud Detection</h3>
+            <p class="use-case-description">Balanced datasets with synthetic fraud patterns for training robust detection models.</p>
+          </div>
+        </div>
+
+        <div class="use-case-card animate-on-scroll">
+          <div class="use-case-icon" style="background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+            </svg>
+          </div>
+          <div class="use-case-content">
+            <h3 class="use-case-title">Financial Services</h3>
+            <p class="use-case-description">Synthetic financial data for risk modeling, compliance testing, and algorithm development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section testimonials">
+    <div class="testimonials-bg">
+      <div class="testimonials-glow"></div>
+    </div>
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Testimonials</span>
+        <h2 class="section-title">Trusted by <span class="gradient-text">AI leaders</span></h2>
+        <p class="section-description">See why top AI teams choose Ditosis for their synthetic data needs.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"Ditosis transformed our data pipeline. We went from 6 months of data collection to 2 weeks of synthetic generation with better model performance."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SC</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Sarah Chen</span>
+              <span class="testimonial-role">Head of ML, TechVision AI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"The quality of synthetic medical imaging data exceeded our expectations. Finally, we can train diagnostic models without privacy concerns."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MT</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Dr. Michael Torres</span>
+              <span class="testimonial-role">Chief Data Scientist, HealthAI Labs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"We use Ditosis for all our conversation data needs. Their multi-language support and cultural nuance handling is unmatched."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">EL</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Emma Lindqvist</span>
+              <span class="testimonial-role">NLP Lead, ChatScale</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"The API integration was seamless. Our team was generating custom datasets within hours of signing up."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JP</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">James Park</span>
+              <span class="testimonial-role">Engineering Manager, DataFlow Inc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"Ditosis helped us address class imbalance in our fraud detection models. Detection rates improved by 40% after retraining."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RP</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Raj Patel</span>
+              <span class="testimonial-role">VP of Engineering, SecureFinance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-on-scroll">
+          <svg class="testimonial-quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 11H6a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1v-5h5zm9-1h-4a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v3zm0 1v5a1 1 0 01-1 1h-3a1 1 0 01-1-1v-5h5z"/>
+          </svg>
+          <p class="testimonial-text">"The synthetic driving scenarios they generated covered edge cases we never could have collected in the real world."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">LW</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Lisa Wang</span>
+              <span class="testimonial-role">Perception Team Lead, AutoDrive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request Section -->
+  <section id="request" class="section request-section">
+    <div class="request-bg">
+      <div class="request-glow"></div>
+    </div>
+    <div class="container">
+      <div class="request-wrapper">
+        <div class="request-info animate-on-scroll">
+          <span class="badge">Get Started</span>
+          <h2 class="request-title">Request your <span class="gradient-text">custom dataset</span></h2>
+          <p class="request-description">
+            Tell us about your data needs and our team will create a tailored 
+            proposal within 48 hours. No commitment required.
+          </p>
+
+          <div class="request-benefits">
+            <div class="benefit-item">
+              <svg class="benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Free consultation and proposal</span>
+            </div>
+            <div class="benefit-item">
+              <svg class="benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Sample dataset before full production</span>
+            </div>
+            <div class="benefit-item">
+              <svg class="benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Dedicated project manager</span>
+            </div>
+            <div class="benefit-item">
+              <svg class="benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span>Quality guarantee or revision</span>
+            </div>
+          </div>
+
+          <div class="request-contact">
+            <p class="contact-label">Prefer to talk directly?</p>
+            <a href="mailto:hello@ditosis.com" class="contact-email">hello@ditosis.com</a>
+          </div>
+        </div>
+
+        <form class="request-form animate-on-scroll" id="request-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="companyName">Company Name *</label>
+              <input type="text" id="companyName" name="companyName" required placeholder="Your company">
+            </div>
+            <div class="form-group">
+              <label for="contactName">Your Name *</label>
+              <input type="text" id="contactName" name="contactName" required placeholder="Full name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataType">Data Type *</label>
+              <select id="dataType" name="dataType" required>
+                <option value="">Select type</option>
+                <option value="text">Text / NLP</option>
+                <option value="image">Image</option>
+                <option value="audio">Audio</option>
+                <option value="video">Video</option>
+                <option value="tabular">Tabular</option>
+                <option value="multimodal">Multimodal</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="useCase">Use Case *</label>
+              <select id="useCase" name="useCase" required>
+                <option value="">Select use case</option>
+                <option value="training">Model Training</option>
+                <option value="finetuning">Fine-tuning</option>
+                <option value="testing">Testing / QA</option>
+                <option value="augmentation">Data Augmentation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataVolume">Data Volume *</label>
+              <select id="dataVolume" name="dataVolume" required>
+                <option value="">Select volume</option>
+                <option value="small">Small (under 100K samples)</option>
+                <option value="medium">Medium (100K - 1M)</option>
+                <option value="large">Large (1M - 10M)</option>
+                <option value="enterprise">Enterprise (10M+)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timeline">Timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select timeline</option>
+                <option value="urgent">Urgent (ASAP)</option>
+                <option value="1-2weeks">1-2 weeks</option>
+                <option value="1month">1 month</option>
+                <option value="3months">3 months</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Project Description *</label>
+            <textarea id="description" name="description" required rows="4" placeholder="Tell us about your project, specific requirements, and any special considerations..."></textarea>
+          </div>
+
+          <div class="form-status" id="form-status" style="display: none;"></div>
+
+          <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+            Submit Request
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00F5A0" />
+                  <stop offset="100%" stop-color="#00D9F5" />
+                </linearGradient>
+              </defs>
+              <path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" 
+                stroke="url(#footerLogoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="4" fill="url(#footerLogoGrad)"/>
+              <circle cx="16" cy="8" r="2" fill="url(#footerLogoGrad)"/>
+              <circle cx="16" cy="24" r="2" fill="url(#footerLogoGrad)"/>
+            </svg>
+            <span>Ditosis</span>
+          </a>
+          <p class="footer-tagline">
+            Premium synthetic data solutions for AI training and fine-tuning. 
+            Privacy-first, infinitely scalable.
+          </p>
+          <div class="footer-social">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@ditosis.com" class="social-link" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-column-title">Products</h4>
+            <ul class="footer-link-list">
+              <li><a href="#services">Text Data</a></li>
+              <li><a href="#services">Image Data</a></li>
+              <li><a href="#services">Audio Data</a></li>
+              <li><a href="#services">Video Data</a></li>
+              <li><a href="#features">API Access</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-column-title">Company</h4>
+            <ul class="footer-link-list">
+              <li><a href="#about">About</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#request">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-column-title">Resources</h4>
+            <ul class="footer-link-list">
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#testimonials">Case Studies</a></li>
+              <li><a href="#">Data Quality Guide</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-column-title">Legal</h4>
+            <ul class="footer-link-list">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">GDPR</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Ditosis. All rights reserved.</p>
+        <div class="footer-badges">
+          <span class="security-badge">SOC 2 Compliant</span>
+          <span class="security-badge">GDPR Ready</span>
+          <span class="security-badge">HIPAA Capable</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
