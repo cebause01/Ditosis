@@ -148,6 +148,7 @@ a {
 .badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   padding: 6px 12px;
   background: rgba(0, 245, 160, 0.1);
@@ -447,6 +448,7 @@ a {
   border: 1px solid rgba(0, 245, 160, 0.2);
   border-radius: 12px;
   color: var(--accent-primary);
+  flex-shrink: 0;
 }
 
 .hero-stat-content {
@@ -463,6 +465,7 @@ a {
 .hero-stat-label {
   font-size: 13px;
   color: var(--text-tertiary);
+  white-space: nowrap;
 }
 
 .hero-trusted {
@@ -504,6 +507,9 @@ a {
     min-height: auto;
     padding-bottom: 80px;
   }
+  .hero-content {
+    text-align: center;
+  }
   .hero-actions {
     flex-direction: column;
     width: 100%;
@@ -512,9 +518,30 @@ a {
     margin-right: auto;
   }
   .hero-actions .btn { width: 100%; }
-  .hero-stats { gap: 24px; }
-  .hero-stat { flex: 1 1 250px; justify-content: center; }
-  .hero-trusted-logos { gap: 24px; }
+  .hero-stats { 
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .hero-stat { 
+    width: 100%;
+    max-width: 280px;
+    justify-content: flex-start;
+    background: rgba(0, 245, 160, 0.05);
+    border: 1px solid rgba(0, 245, 160, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .hero-stat-content {
+    text-align: left;
+  }
+  .hero-trusted { 
+    padding-top: 32px;
+  }
+  .hero-trusted-logos { 
+    gap: 16px 24px;
+    justify-content: center;
+  }
   .trusted-logo { font-size: 14px; }
 }
 
@@ -658,6 +685,14 @@ a {
     gap: 24px;
   }
   .about-stat { text-align: center; }
+  
+  .highlight-card {
+    text-align: center;
+  }
+  .highlight-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ========================================
@@ -1458,9 +1493,33 @@ a {
   transform: translateY(0);
 }
 
+/* ========================================
+   GLOBAL MOBILE STYLES
+   ======================================== */
 @media (max-width: 768px) {
   :root {
     --section-padding: 80px;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    margin-bottom: 48px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+  }
+  
+  .section-description {
+    font-size: 16px;
+  }
+  
+  .badge {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
 
