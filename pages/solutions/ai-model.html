@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Model | Ditosis</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/ditosis-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/chatbot.css">
+  <style>
+    .page-hero { padding: 160px 0 100px; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    .page-hero-bg .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(168,85,247,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .page-hero-bg .glow-a { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(168,85,247,.1) 0%, transparent 70%); top: -250px; right: -100px; }
+    .page-hero-bg .glow-b { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,245,160,.07) 0%, transparent 70%); bottom: -100px; left: 5%; }
+    .page-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px; border: 1px solid rgba(168,85,247,.3); background: rgba(168,85,247,.06); font-size: .8rem; font-weight: 600; color: #a855f7; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 28px; }
+    .page-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #a855f7; box-shadow: 0 0 8px #a855f7; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+    .page-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 24px; }
+    .page-description { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 40px; line-height: 1.8; }
+    .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 48px; }
+    .model-card { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 20px; overflow: hidden; transition: all var(--transition-base); }
+    .model-card:hover { border-color: rgba(168,85,247,.25); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .model-card-top { padding: 28px 28px 0; }
+    .model-tier { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 6px; display: inline-block; margin-bottom: 16px; }
+    .tier-starter { background: rgba(0,245,160,.1); color: #00F5A0; border: 1px solid rgba(0,245,160,.25); }
+    .tier-pro { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.25); }
+    .tier-enterprise { background: rgba(245,158,11,.1); color: #f59e0b; border: 1px solid rgba(245,158,11,.25); }
+    .model-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .model-subtitle { font-size: .875rem; color: var(--text-secondary); margin-bottom: 20px; }
+    .model-divider { height: 1px; background: var(--border-primary); margin: 0 -28px; }
+    .model-card-body { padding: 24px 28px; }
+    .model-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .spec { background: var(--bg-tertiary); border-radius: 10px; padding: 12px 14px; }
+    .spec-key { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+    .spec-val { font-size: .9rem; font-weight: 700; font-family: var(--font-mono); color: var(--text-primary); }
+    .model-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .model-feature { display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--text-secondary); }
+    .mf-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .model-price { font-size: 1.6rem; font-weight: 800; margin-bottom: 4px; }
+    .model-price-note { font-size: .75rem; color: var(--text-tertiary); margin-bottom: 20px; }
+    .training-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 48px; position: relative; }
+    .training-flow::before { content: ''; position: absolute; top: 28px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg, rgba(168,85,247,.3), rgba(0,245,160,.3)); }
+    .flow-node { text-align: center; padding: 0 8px; position: relative; z-index: 1; }
+    .flow-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px solid; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; background: var(--bg-primary); transition: all var(--transition-base); }
+    .flow-icon:hover { transform: scale(1.1); }
+    .flow-label { font-size: .85rem; font-weight: 700; margin-bottom: 6px; }
+    .flow-sublabel { font-size: .75rem; color: var(--text-tertiary); line-height: 1.5; }
+    .benchmark-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+    .bench-row { display: grid; grid-template-columns: 160px 1fr 80px; align-items: center; gap: 16px; }
+    .bench-name { font-size: .85rem; font-weight: 600; color: var(--text-secondary); text-align: right; }
+    .bench-track { height: 32px; background: var(--bg-tertiary); border-radius: 6px; overflow: hidden; position: relative; }
+    .bench-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 12px; font-size: .75rem; font-weight: 700; color: #000; transition: width 1.2s cubic-bezier(.22,1,.36,1); }
+    .bench-fill.ditosis { background: var(--accent-gradient); }
+    .bench-fill.base { background: rgba(255,255,255,.15); color: var(--text-tertiary); }
+    .bench-fill.generic { background: rgba(99,102,241,.4); color: var(--text-secondary); }
+    .bench-score { font-size: .9rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-primary); }
+    .bench-legend { display: flex; gap: 24px; margin-bottom: 24px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--text-secondary); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+    .workflow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
+    .workflow-step { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 16px; padding: 28px; position: relative; }
+    .workflow-num { font-size: 3rem; font-weight: 900; color: rgba(168,85,247,.15); position: absolute; top: 16px; right: 20px; font-family: var(--font-mono); line-height: 1; }
+    .workflow-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(168,85,247,.1); border: 1px solid rgba(168,85,247,.25); display: flex; align-items: center; justify-content: center; color: #a855f7; margin-bottom: 16px; }
+    .workflow-title { font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
+    .workflow-desc { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; }
+    @media(max-width:768px) { .training-flow { grid-template-columns: 1fr 1fr; } .training-flow::before { display: none; } .bench-row { grid-template-columns: 100px 1fr 60px; } .bench-name { font-size: .75rem; } }
+    @media(max-width:480px) { .models-grid, .workflow { grid-template-columns: 1fr; } }
+  </style>
+  <style>
+    /* Guarantee navbar always visible on sub-pages */
+    #navbar { background: rgba(9,9,11,0.95) !important; backdrop-filter: blur(20px) !important; border-bottom: 1px solid #27272a !important; }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-container">
+      <a href="../../index.html" class="navbar-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00F5A0"/><stop offset="100%" stop-color="#00D9F5"/></linearGradient></defs><path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/><circle cx="16" cy="8" r="2" fill="url(#logoGrad)"/><circle cx="16" cy="24" r="2" fill="url(#logoGrad)"/></svg>
+        <span>Ditosis</span>
+      </a>
+      <div class="navbar-links">
+        <a href="../../index.html#about" class="nav-link">About</a>
+        <a href="../../index.html#services" class="nav-link">Services</a>
+        <a href="../../index.html#features" class="nav-link">Platform</a>
+        <a href="../../pages/solutions/real-data.html" class="nav-link">Real Data</a>
+        <a href="../../pages/solutions/Synthetic-data.html" class="nav-link">Synthetic Data</a>
+        <a href="../../pages/solutions/ai-model.html" class="nav-link active">AI Model</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="../../index.html#request" class="btn btn-secondary">Contact Us</a>
+        <a href="../../index.html#request" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../../index.html#about" class="mobile-nav-link">About</a>
+      <a href="../../index.html#services" class="mobile-nav-link">Services</a>
+      <a href="../../index.html#features" class="mobile-nav-link">Platform</a>
+      <a href="../../pages/solutions/real-data.html" class="mobile-nav-link">Real Data</a>
+      <a href="../../pages/solutions/Synthetic-data.html" class="mobile-nav-link">Synthetic Data</a>
+      <a href="../../pages/solutions/ai-model.html" class="mobile-nav-link">AI Model</a>
+      <div class="mobile-menu-actions"><a href="../../index.html#request" class="btn btn-primary" style="width:100%;">Get Started</a></div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"><div class="hero-grid"></div><div class="glow-a"></div><div class="glow-b"></div></div>
+    <div class="container">
+      <div class="animate-on-scroll">
+        <div class="page-badge"><span class="dot"></span>Custom AI Models</div>
+        <h1 class="page-title">Fine-tuned AI models<br><span class="gradient-text">built on your data</span></h1>
+        <p class="page-description">We don't just supply data — we build the model. From fine-tuning to full custom training, Ditosis delivers domain-specific AI models that outperform generic baselines on your use case.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="../../index.html#request" class="btn btn-primary btn-lg">Build My Model <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#benchmarks" class="btn btn-secondary btn-lg">See Benchmarks</a>
+        </div>
+      </div>
+
+      <div class="animate-on-scroll" style="margin-top:70px;">
+        <div style="text-align:center;margin-bottom:32px;"><span class="badge">How It Works</span></div>
+        <div class="training-flow">
+          <div class="flow-node"><div class="flow-icon" style="border-color:rgba(0,245,160,.4);color:#00F5A0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="flow-label">Data Intake</div><div class="flow-sublabel">Real + synthetic dataset assembly</div></div>
+          <div class="flow-node"><div class="flow-icon" style="border-color:rgba(0,217,245,.4);color:#00D9F5;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="flow-label">Preprocessing</div><div class="flow-sublabel">Cleaning, dedup, formatting</div></div>
+          <div class="flow-node"><div class="flow-icon" style="border-color:rgba(168,85,247,.5);color:#a855f7;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div><div class="flow-label">Fine-Tuning</div><div class="flow-sublabel">SFT, RLHF, DPO training</div></div>
+          <div class="flow-node"><div class="flow-icon" style="border-color:rgba(245,158,11,.4);color:#f59e0b;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="flow-label">Evaluation</div><div class="flow-sublabel">Benchmarks + human review</div></div>
+          <div class="flow-node"><div class="flow-icon" style="border-color:rgba(0,245,160,.4);color:#00F5A0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div><div class="flow-label">Deployment</div><div class="flow-sublabel">API endpoint or export</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Model Tiers</span>
+        <h2 class="section-title">Choose your <span class="gradient-text">training path</span></h2>
+        <p class="section-description">From fast fine-tuning to full custom pre-training — we match the solution to your scale.</p>
+      </div>
+      <div class="models-grid">
+        <div class="model-card animate-on-scroll">
+          <div class="model-card-top"><div class="model-tier tier-starter">Starter</div><div class="model-name">Domain Fine-Tune</div><div class="model-subtitle">Adapt an existing foundation model to your domain in days.</div></div>
+          <div class="model-divider"></div>
+          <div class="model-card-body">
+            <div class="model-specs"><div class="spec"><div class="spec-key">Base Model</div><div class="spec-val">Your choice</div></div><div class="spec"><div class="spec-key">Delivery</div><div class="spec-val">3–7 days</div></div><div class="spec"><div class="spec-key">Min. Data</div><div class="spec-val">10K samples</div></div><div class="spec"><div class="spec-key">Iterations</div><div class="spec-val">3 rounds</div></div></div>
+            <div class="model-features"><div class="model-feature"><div class="mf-icon" style="background:rgba(0,245,160,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00F5A0" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Supervised fine-tuning (SFT)</div><div class="model-feature"><div class="mf-icon" style="background:rgba(0,245,160,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00F5A0" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Evaluation report included</div><div class="model-feature"><div class="mf-icon" style="background:rgba(0,245,160,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00F5A0" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Weights export (GGUF / HF)</div><div class="model-feature"><div class="mf-icon" style="background:rgba(0,245,160,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00F5A0" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Email support</div></div>
+            <div class="model-price" style="background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">From $4,900</div>
+            <div class="model-price-note">One-time project fee</div>
+            <a href="../../index.html#request" class="btn btn-secondary" style="width:100%;">Get a Quote</a>
+          </div>
+        </div>
+        <div class="model-card animate-on-scroll" style="border-color:rgba(168,85,247,.3);box-shadow:0 0 40px rgba(168,85,247,.08);">
+          <div class="model-card-top"><div class="model-tier tier-pro">Most Popular</div><div class="model-name">RLHF Pro Training</div><div class="model-subtitle">Full alignment pipeline with human feedback loops and preference optimization.</div></div>
+          <div class="model-divider"></div>
+          <div class="model-card-body">
+            <div class="model-specs"><div class="spec"><div class="spec-key">Base Model</div><div class="spec-val">7B–70B</div></div><div class="spec"><div class="spec-key">Delivery</div><div class="spec-val">2–4 weeks</div></div><div class="spec"><div class="spec-key">Min. Data</div><div class="spec-val">50K samples</div></div><div class="spec"><div class="spec-key">Iterations</div><div class="spec-val">Unlimited</div></div></div>
+            <div class="model-features"><div class="model-feature"><div class="mf-icon" style="background:rgba(168,85,247,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>SFT + RLHF + DPO pipeline</div><div class="model-feature"><div class="mf-icon" style="background:rgba(168,85,247,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Human preference annotation</div><div class="model-feature"><div class="mf-icon" style="background:rgba(168,85,247,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Dedicated ML engineer</div><div class="model-feature"><div class="mf-icon" style="background:rgba(168,85,247,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Custom benchmark suite</div><div class="model-feature"><div class="mf-icon" style="background:rgba(168,85,247,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Hosted API endpoint</div></div>
+            <div class="model-price" style="color:#a855f7;">From $24,900</div>
+            <div class="model-price-note">Project fee · hosting separate</div>
+            <a href="../../index.html#request" class="btn btn-primary" style="width:100%;background:linear-gradient(135deg,#a855f7,#6366f1);">Get a Quote</a>
+          </div>
+        </div>
+        <div class="model-card animate-on-scroll">
+          <div class="model-card-top"><div class="model-tier tier-enterprise">Enterprise</div><div class="model-name">Custom Pre-Training</div><div class="model-subtitle">Build a domain-native model from scratch on your proprietary data corpus.</div></div>
+          <div class="model-divider"></div>
+          <div class="model-card-body">
+            <div class="model-specs"><div class="spec"><div class="spec-key">Scale</div><div class="spec-val">Any size</div></div><div class="spec"><div class="spec-key">Delivery</div><div class="spec-val">Custom</div></div><div class="spec"><div class="spec-key">Data Volume</div><div class="spec-val">10B+ tokens</div></div><div class="spec"><div class="spec-key">Team</div><div class="spec-val">Dedicated</div></div></div>
+            <div class="model-features"><div class="model-feature"><div class="mf-icon" style="background:rgba(245,158,11,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full architecture design</div><div class="model-feature"><div class="mf-icon" style="background:rgba(245,158,11,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Private GPU cluster</div><div class="model-feature"><div class="mf-icon" style="background:rgba(245,158,11,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>IP fully owned by you</div><div class="model-feature"><div class="mf-icon" style="background:rgba(245,158,11,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>On-prem deployment option</div><div class="model-feature"><div class="mf-icon" style="background:rgba(245,158,11,.15);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>12-month SLA & support</div></div>
+            <div class="model-price" style="color:#f59e0b;">Custom pricing</div>
+            <div class="model-price-note">Talk to our enterprise team</div>
+            <a href="../../index.html#request" class="btn btn-secondary" style="width:100%;">Contact Sales</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="benchmarks" class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Performance</span>
+        <h2 class="section-title">Ditosis models <span class="gradient-text">outperform</span></h2>
+        <p class="section-description">Average scores across customer deployments vs. base models and generic fine-tunes.</p>
+      </div>
+      <div class="animate-on-scroll">
+        <div class="bench-legend"><div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,#00F5A0,#00D9F5);"></span>Ditosis Fine-Tuned</div><div class="legend-item"><span class="legend-dot" style="background:rgba(99,102,241,.5);"></span>Generic Fine-Tune</div><div class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,.2);"></span>Base Model</div></div>
+        <div class="benchmark-grid">
+          <div class="bench-row"><div class="bench-name">Domain Accuracy</div><div class="bench-track"><div class="bench-fill ditosis" style="width:94%;">94%</div></div><div class="bench-score">94</div></div>
+          <div class="bench-row"><div class="bench-name">Instruction Follow</div><div class="bench-track"><div class="bench-fill ditosis" style="width:91%;">91%</div></div><div class="bench-score">91</div></div>
+          <div class="bench-row"><div class="bench-name">Hallucination Rate ↓</div><div class="bench-track"><div class="bench-fill ditosis" style="width:8%;min-width:60px;">8%</div></div><div class="bench-score" style="color:#00F5A0;">8%</div></div>
+          <div class="bench-row"><div class="bench-name">Generic Fine-Tune</div><div class="bench-track"><div class="bench-fill generic" style="width:73%;">73%</div></div><div class="bench-score" style="color:var(--text-secondary);">73</div></div>
+          <div class="bench-row"><div class="bench-name">Base Model (no FT)</div><div class="bench-track"><div class="bench-fill base" style="width:51%;">51%</div></div><div class="bench-score" style="color:var(--text-tertiary);">51</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="badge">Your Experience</span>
+        <h2 class="section-title">From kickoff to <span class="gradient-text">production</span></h2>
+      </div>
+      <div class="workflow">
+        <div class="workflow-step animate-on-scroll"><div class="workflow-num">01</div><div class="workflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="workflow-title">Discovery Call</div><div class="workflow-desc">We learn your domain, data sources, and success metrics. 45 minutes, no commitment.</div></div>
+        <div class="workflow-step animate-on-scroll"><div class="workflow-num">02</div><div class="workflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="workflow-title">Data Proposal</div><div class="workflow-desc">We design the training data mix — real vs. synthetic — and submit a detailed proposal within 48h.</div></div>
+        <div class="workflow-step animate-on-scroll"><div class="workflow-num">03</div><div class="workflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></div><div class="workflow-title">Training Begins</div><div class="workflow-desc">Data is prepared, the model is trained, and you get weekly progress updates from your ML engineer.</div></div>
+        <div class="workflow-step animate-on-scroll"><div class="workflow-num">04</div><div class="workflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="workflow-title">Review & Iterate</div><div class="workflow-desc">You test the model on your own prompts. We refine based on your feedback until it meets your bar.</div></div>
+        <div class="workflow-step animate-on-scroll"><div class="workflow-num">05</div><div class="workflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div><div class="workflow-title">Deploy</div><div class="workflow-desc">Receive your model weights, a hosted API endpoint, or a containerized deployment — your choice.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container" style="text-align:center;">
+      <div class="animate-on-scroll">
+        <span class="badge">Get Started</span>
+        <h2 class="section-title" style="max-width:600px;margin:16px auto 20px;">Ready to build your <span class="gradient-text">custom AI model?</span></h2>
+        <p class="section-description" style="margin:0 auto 40px;">Book a free discovery call and get a tailored model training proposal within 48 hours.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="../../index.html#request" class="btn btn-primary btn-lg">Book a Discovery Call <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="../../pages/solutions/Synthetic-data.html" class="btn btn-secondary btn-lg">Explore Synthetic Data</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="../../index.html" class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="fLG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00F5A0"/><stop offset="100%" stop-color="#00D9F5"/></linearGradient></defs><path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" stroke="url(#fLG)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="16" r="4" fill="url(#fLG)"/><circle cx="16" cy="8" r="2" fill="url(#fLG)"/><circle cx="16" cy="24" r="2" fill="url(#fLG)"/></svg><span>Ditosis</span>
+          </a>
+          <p class="footer-tagline">Premium synthetic data solutions for AI training and fine-tuning. Privacy-first, infinitely scalable.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column"><h4 class="footer-column-title">Solutions</h4><ul class="footer-link-list"><li><a href="../../pages/solutions/real-data.html">Real Data</a></li><li><a href="../../pages/solutions/Synthetic-data.html">Synthetic Data</a></li><li><a href="../../pages/solutions/ai-model.html">AI Model</a></li></ul></div>
+          <div class="footer-column"><h4 class="footer-column-title">Company</h4><ul class="footer-link-list"><li><a href="../../index.html#about">About</a></li><li><a href="../../pages/company/careers.html">Careers</a></li><li><a href="../../pages/company/blog.html">Blog</a></li><li><a href="../../index.html#request">Contact</a></li></ul></div>
+          <div class="footer-column"><h4 class="footer-column-title">Legal</h4><ul class="footer-link-list"><li><a href="../../pages/legal/privacy.html">Privacy Policy</a></li><li><a href="../../pages/legal/terms.html">Terms</a></li><li><a href="../../pages/legal/gdpr.html">GDPR</a></li><li><a href="../../pages/legal/cookies.html">Cookies</a></li></ul></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2025 Ditosis. All rights reserved.</p><div class="footer-badges"><span class="security-badge">SOC 2 Compliant</span><span class="security-badge">GDPR Ready</span><span class="security-badge">HIPAA Capable</span></div></div>
+    </div>
+  </footer>
+  <script src="../../assets/js/script.js"></script>
+  <script src="../../assets/js/chatbot.js"></script>
+</body>
+</html>

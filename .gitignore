@@ -1,9 +1,21 @@
-# Old MERN stack files (can be deleted manually)
-client/
-server/
-node_modules/
-package.json
-package-lock.json
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
 
 # OS files
 .DS_Store
@@ -12,9 +24,10 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# Misc
-*.local
-.cache/
+# Node modules (if frontend used)
+node_modules/
+
+# Build files
+dist/
+build/

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions | Ditosis</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/ditosis-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/chatbot.css">
+  <style>
+    #navbar { background: rgba(9,9,11,0.95) !important; backdrop-filter: blur(20px) !important; border-bottom: 1px solid #27272a !important; }
+
+    .solutions-hero { padding: 160px 0 80px; position: relative; overflow: hidden; text-align: center; }
+    .solutions-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    .solutions-hero-bg .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,245,160,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,160,.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .solutions-hero-bg .glow-a { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(0,245,160,.1) 0%, transparent 70%); top: -200px; left: 50%; transform: translateX(-50%); }
+
+    .solutions-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px; border: 1px solid rgba(0,245,160,.3); background: rgba(0,245,160,.06); font-size: .8rem; font-weight: 600; color: var(--accent-primary); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 28px; }
+    .solutions-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 8px var(--accent-primary); animation: pulse-dot 2s ease-in-out infinite; }
+    .solutions-hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    .solutions-hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 60px; line-height: 1.7; }
+
+    .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: var(--container-max); margin: 0 auto; padding: 0 24px 100px; }
+
+    .sol-card { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 24px; padding: 40px 36px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.25s ease; position: relative; overflow: hidden; }
+    .sol-card::before { content: ''; position: absolute; inset: 0; border-radius: 24px; opacity: 0; transition: opacity 0.25s ease; }
+    .sol-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .sol-card:hover::before { opacity: 1; }
+
+    .sol-card.green { --card-accent: rgba(0,245,160,.4); }
+    .sol-card.green:hover { border-color: rgba(0,245,160,.4); }
+    .sol-card.green::before { background: radial-gradient(ellipse at top left, rgba(0,245,160,.07), transparent 60%); }
+    .sol-card.cyan { --card-accent: rgba(0,217,245,.4); }
+    .sol-card.cyan:hover { border-color: rgba(0,217,245,.4); }
+    .sol-card.cyan::before { background: radial-gradient(ellipse at top left, rgba(0,217,245,.07), transparent 60%); }
+    .sol-card.purple { --card-accent: rgba(168,85,247,.4); }
+    .sol-card.purple:hover { border-color: rgba(168,85,247,.4); }
+    .sol-card.purple::before { background: radial-gradient(ellipse at top left, rgba(168,85,247,.07), transparent 60%); }
+
+    .sol-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+    .sol-card.green .sol-icon { background: rgba(0,245,160,.12); border: 1px solid rgba(0,245,160,.25); color: #00F5A0; }
+    .sol-card.cyan .sol-icon  { background: rgba(0,217,245,.12); border: 1px solid rgba(0,217,245,.25); color: #00D9F5; }
+    .sol-card.purple .sol-icon{ background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.25); color: #a855f7; }
+
+    .sol-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+    .sol-card.green .sol-label  { color: #00F5A0; }
+    .sol-card.cyan .sol-label   { color: #00D9F5; }
+    .sol-card.purple .sol-label { color: #a855f7; }
+
+    .sol-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 14px; color: var(--text-primary); }
+    .sol-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; flex: 1; }
+
+    .sol-stats { display: flex; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+    .sol-stat { display: flex; flex-direction: column; gap: 2px; }
+    .sol-stat-val { font-size: 1.1rem; font-weight: 800; font-family: var(--font-mono); }
+    .sol-card.green .sol-stat-val  { color: #00F5A0; }
+    .sol-card.cyan .sol-stat-val   { color: #00D9F5; }
+    .sol-card.purple .sol-stat-val { color: #a855f7; }
+    .sol-stat-lbl { font-size: .72rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .05em; }
+
+    .sol-cta { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; transition: gap 0.2s ease; }
+    .sol-card.green .sol-cta  { color: #00F5A0; }
+    .sol-card.cyan .sol-cta   { color: #00D9F5; }
+    .sol-card.purple .sol-cta { color: #a855f7; }
+    .sol-card:hover .sol-cta  { gap: 14px; }
+
+    @media (max-width: 768px) { .solutions-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-container">
+      <a href="../../index.html" class="navbar-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00F5A0"/><stop offset="100%" stop-color="#00D9F5"/></linearGradient></defs><path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/><circle cx="16" cy="8" r="2" fill="url(#logoGrad)"/><circle cx="16" cy="24" r="2" fill="url(#logoGrad)"/></svg>
+        <span>Ditosis</span>
+      </a>
+      <div class="navbar-links">
+        <a href="../../index.html#about" class="nav-link">About</a>
+        <a href="../../index.html#services" class="nav-link">Services</a>
+        <a href="../../index.html#features" class="nav-link">Platform</a>
+        <a href="real-data.html" class="nav-link">Real Data</a>
+        <a href="Synthetic-data.html" class="nav-link">Synthetic Data</a>
+        <a href="ai-model.html" class="nav-link">AI Model</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="../../index.html#request" class="btn btn-secondary">Contact Us</a>
+        <a href="../../index.html#request" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../../index.html#about" class="mobile-nav-link">About</a>
+      <a href="../../index.html#services" class="mobile-nav-link">Services</a>
+      <a href="../../index.html#features" class="mobile-nav-link">Platform</a>
+      <a href="real-data.html" class="mobile-nav-link">Real Data</a>
+      <a href="Synthetic-data.html" class="mobile-nav-link">Synthetic Data</a>
+      <a href="ai-model.html" class="mobile-nav-link">AI Model</a>
+      <div class="mobile-menu-actions"><a href="../../index.html#request" class="btn btn-primary" style="width:100%;">Get Started</a></div>
+    </div>
+  </nav>
+
+  <section class="solutions-hero">
+    <div class="solutions-hero-bg"><div class="hero-grid"></div><div class="glow-a"></div></div>
+    <div class="container" style="position:relative;">
+      <div class="animate-on-scroll">
+        <div class="solutions-badge"><span class="dot"></span>Our Solutions</div>
+        <h1>Everything your AI needs,<br><span class="gradient-text">in one place</span></h1>
+        <p>From curated real datasets to infinite synthetic generation and expert model training — Ditosis covers the full AI data pipeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="solutions-grid">
+
+    <a href="real-data.html" class="sol-card green animate-on-scroll">
+      <div class="sol-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <div class="sol-label">Real Data</div>
+      <div class="sol-title">Curated Real-World Datasets</div>
+      <div class="sol-desc">Ethically sourced, compliance-ready datasets — cleaned, annotated, and ready to supercharge your models. GDPR, HIPAA &amp; CCPA compliant.</div>
+      <div class="sol-stats">
+        <div class="sol-stat"><span class="sol-stat-val">8.4B+</span><span class="sol-stat-lbl">Data points</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">1,200+</span><span class="sol-stat-lbl">Datasets</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">94</span><span class="sol-stat-lbl">Languages</span></div>
+      </div>
+      <span class="sol-cta">Explore Real Data <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="Synthetic-data.html" class="sol-card cyan animate-on-scroll">
+      <div class="sol-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="sol-label">Synthetic Data</div>
+      <div class="sol-title">Infinite Synthetic Generation</div>
+      <div class="sol-desc">Generate text, image, audio, video, tabular &amp; multimodal data at unlimited scale — zero privacy risk, production-ready in hours not months.</div>
+      <div class="sol-stats">
+        <div class="sol-stat"><span class="sol-stat-val">&#8734;</span><span class="sol-stat-lbl">Scale</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">6</span><span class="sol-stat-lbl">Data types</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">0%</span><span class="sol-stat-lbl">Privacy risk</span></div>
+      </div>
+      <span class="sol-cta">Explore Synthetic Data <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="ai-model.html" class="sol-card purple animate-on-scroll">
+      <div class="sol-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="sol-label">AI Model</div>
+      <div class="sol-title">Expert AI Model Training</div>
+      <div class="sol-desc">Fine-tuning, RLHF, DPO and full custom pre-training. Enterprise-grade model development with 94% domain accuracy across industries.</div>
+      <div class="sol-stats">
+        <div class="sol-stat"><span class="sol-stat-val">94%</span><span class="sol-stat-lbl">Domain accuracy</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">4</span><span class="sol-stat-lbl">Training methods</span></div>
+        <div class="sol-stat"><span class="sol-stat-val">SOC2</span><span class="sol-stat-lbl">Compliant</span></div>
+      </div>
+      <span class="sol-cta">Explore AI Model <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="../../index.html" class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="fLG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00F5A0"/><stop offset="100%" stop-color="#00D9F5"/></linearGradient></defs><path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24" stroke="url(#fLG)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="16" r="4" fill="url(#fLG)"/><circle cx="16" cy="8" r="2" fill="url(#fLG)"/><circle cx="16" cy="24" r="2" fill="url(#fLG)"/></svg><span>Ditosis</span>
+          </a>
+          <p class="footer-tagline">Premium synthetic data solutions for AI training and fine-tuning. Privacy-first, infinitely scalable.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column"><h4 class="footer-column-title">Solutions</h4><ul class="footer-link-list"><li><a href="real-data.html">Real Data</a></li><li><a href="Synthetic-data.html">Synthetic Data</a></li><li><a href="ai-model.html">AI Model</a></li></ul></div>
+          <div class="footer-column"><h4 class="footer-column-title">Company</h4><ul class="footer-link-list"><li><a href="../../pages/company/blog.html">Blog</a></li><li><a href="../../pages/company/careers.html">Careers</a></li><li><a href="../../index.html#request">Contact</a></li></ul></div>
+          <div class="footer-column"><h4 class="footer-column-title">Legal</h4><ul class="footer-link-list"><li><a href="../../pages/legal/privacy.html">Privacy</a></li><li><a href="../../pages/legal/terms.html">Terms</a></li><li><a href="../../pages/legal/gdpr.html">GDPR</a></li></ul></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p class="footer-copyright">© 2025 Ditosis. All rights reserved.</p><div class="footer-badges"><span class="security-badge">SOC 2 Compliant</span><span class="security-badge">GDPR Ready</span><span class="security-badge">HIPAA Capable</span></div></div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/script.js"></script>
+  <script src="../../assets/js/chatbot.js"></script>
+</body>
+</html>
