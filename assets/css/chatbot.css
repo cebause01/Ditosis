@@ -4,7 +4,7 @@
 
 /* ══ Chat Toggle Button ══ */
 .chat-toggle {
-  position: fixed;
+  position: fixed !important;
   bottom: 28px;
   right: 28px;
   width: 56px;
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 32px rgba(0, 245, 160, 0.35);
-  z-index: 1000;
+  z-index: 99999 !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .chat-toggle:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(0, 245, 160, 0.5); }
@@ -182,6 +182,6 @@
 .chat-footer-note a { color: var(--accent-primary); }
 
 @media (max-width: 480px) {
-  .chat-window { right: 12px; left: 12px; width: auto; bottom: 88px; }
-  .chat-toggle { right: 16px; bottom: 20px; }
+  .chat-window { right: 12px; left: 12px; width: auto; bottom: 92px; }
+  .chat-toggle { right: 16px; bottom: 24px; }
 }

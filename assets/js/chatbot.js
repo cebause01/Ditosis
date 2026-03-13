@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════
-// DITOSIS CHATBOT — Powered by Ollama (llama3.2)
+// DITOSIS CHATBOT — Powered by Groq
 // ══════════════════════════════════════════════════════
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
 
   // ── 1. Inject HTML if not already in page ────────────
   if (!document.getElementById('chat-toggle')) {
@@ -76,7 +76,7 @@
     `);
   }
 
-  // ── 2. System prompt — tells Llama how to behave ─────
+  // ── 2. System prompt ──────────────────────────────────
   const SYSTEM_PROMPT = `You are a helpful and friendly customer support assistant for Ditosis, a premium AI data company. Your name is "Diddy Ditosis Assistant".
 
 Always answer ONLY about Ditosis and its services. If asked anything unrelated, politely redirect the conversation back to Ditosis.
@@ -121,17 +121,17 @@ Ditosis is an enterprise-grade AI data company that provides three core services
   let isLoading = false;
 
   // ── 4. DOM refs ───────────────────────────────────────
-  const toggleBtn    = document.getElementById('chat-toggle');
-  const chatWindow   = document.getElementById('chat-window');
-  const closeBtn     = document.getElementById('chat-close');
-  const clearBtn     = document.getElementById('chat-clear');
-  const messagesEl   = document.getElementById('chat-messages');
-  const inputEl      = document.getElementById('chat-input');
-  const sendBtn      = document.getElementById('chat-send');
-  const suggestEl    = document.getElementById('chat-suggestions');
-  const unreadBadge  = document.getElementById('chat-unread');
-  const openIcon     = toggleBtn.querySelector('.chat-icon-open');
-  const closeIcon    = toggleBtn.querySelector('.chat-icon-close');
+  const toggleBtn  = document.getElementById('chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const closeBtn   = document.getElementById('chat-close');
+  const clearBtn   = document.getElementById('chat-clear');
+  const messagesEl = document.getElementById('chat-messages');
+  const inputEl    = document.getElementById('chat-input');
+  const sendBtn    = document.getElementById('chat-send');
+  const suggestEl  = document.getElementById('chat-suggestions');
+  const unreadBadge = document.getElementById('chat-unread');
+  const openIcon   = toggleBtn.querySelector('.chat-icon-open');
+  const closeIcon  = toggleBtn.querySelector('.chat-icon-close');
 
   // ── 5. Helpers ────────────────────────────────────────
   function getTime() {
@@ -142,16 +142,15 @@ Ditosis is an enterprise-grade AI data company that provides three core services
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  // Format bot reply: convert **bold**, bullet lines, newlines to HTML
   function formatReply(text) {
     return text
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')   // escape HTML
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')                       // **bold**
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')                                   // *italic*
-      .replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>')                             // bullet lines
-      .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')                             // wrap in <ul>
-      .replace(/\n{2,}/g, '</p><p>')                                          // paragraphs
-      .replace(/\n/g, '<br>');                                                // single newlines
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+      .replace(/\n{2,}/g, '</p><p>')
+      .replace(/\n/g, '<br>');
   }
 
   function addMessage(role, text) {
@@ -159,7 +158,6 @@ Ditosis is an enterprise-grade AI data company that provides three core services
     const wrapper = document.createElement('div');
     wrapper.className = 'chat-msg ' + (isBot ? 'bot' : 'user');
 
-    // Avatar
     const avatar = document.createElement('div');
     avatar.className = 'chat-msg-avatar';
     if (isBot) {
@@ -174,7 +172,6 @@ Ditosis is an enterprise-grade AI data company that provides three core services
       avatar.textContent = 'You';
     }
 
-    // Bubble
     const bubble = document.createElement('div');
     bubble.className = 'chat-bubble';
     if (isBot) {
@@ -183,7 +180,6 @@ Ditosis is an enterprise-grade AI data company that provides three core services
       bubble.textContent = text;
     }
 
-    // Timestamp
     const ts = document.createElement('span');
     ts.className = 'chat-timestamp';
     ts.textContent = getTime();
@@ -333,7 +329,7 @@ Ditosis is an enterprise-grade AI data company that provides three core services
 
   // ── 11. Welcome message ───────────────────────────────
   setTimeout(() => {
-    addMessage('bot', "👋 Hi! I'm the Diddy Ditosis Assistant. I can help you with questions about our real data, synthetic data generation, and AI model training services.\n\nWhat can I help you with today?");
+    addMessage('bot', "👋 Hi! I'm Diddy, the Ditosis Assistant. I can help you with questions about our real data, synthetic data generation, and AI model training services.\n\nWhat can I help you with today?");
   }, 700);
 
-})();
+});

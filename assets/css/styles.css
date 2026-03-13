@@ -51,6 +51,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Must be on html NOT body — body overflow-x breaks position:fixed */
 }
 
 body {
@@ -59,7 +60,6 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 /* Scrollbar */
@@ -1676,10 +1676,11 @@ body {
 /* ========================================
    IMPROVED: Floating action pill (back to top)
    ======================================== */
+/* ── Back to Top Button ── */
 .back-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 96px;
+  position: fixed !important;
+  bottom: 28px;
+  right: 96px;          /* sits left of chatbot (chatbot is at right:28px, width:56px) */
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1690,28 +1691,28 @@ body {
   justify-content: center;
   cursor: pointer;
   color: #000;
-  opacity: 0;
-  transform: translateY(20px) scale(0.85);
+  opacity: 0;           /* hidden by default — JS adds .visible after 200px scroll */
+  transform: translateY(16px) scale(0.85);
   transition: opacity 0.3s ease, transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease;
-  z-index: 998;
+  z-index: 99999 !important;
   box-shadow: 0 4px 20px rgba(0,245,160,0.3);
   pointer-events: none;
   overflow: visible;
 }
 .back-to-top.visible {
-  opacity: 1;
+  opacity: 1 !important;
   transform: translateY(0) scale(1);
-  pointer-events: all;
+  pointer-events: all !important;
 }
 .back-to-top:hover {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 8px 32px rgba(0,245,160,0.5);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 32px rgba(0,245,160,0.55);
 }
 .back-to-top:active {
   transform: scale(0.95);
 }
-@media (max-width: 480px) {
-  .back-to-top { right: 88px; bottom: 24px; }
+@media (max-width: 600px) {
+  .back-to-top { right: 82px; bottom: 20px; width: 44px; height: 44px; }
 }
 
 /* ========================================
