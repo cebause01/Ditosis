@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initNavActiveLinks();
   initCountUpAnimations();
   initTypingEffect();
+  initDynamicYear();
+  injectFooter();
 });
 
 // ========================================
@@ -244,6 +246,37 @@ function initTypingEffect() {
   if (!badge) return;
   const original = badge.textContent;
   // Already set — just leave it, effect only on index
+}
+
+// ========================================
+// SHARED FOOTER INJECTION
+// ========================================
+function injectFooter() {
+  const placeholder = document.getElementById('footer-root');
+  if (!placeholder) return;
+
+  fetch('/partials/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      placeholder.innerHTML = html;
+      initDynamicYear();
+      initFooterLinks();
+    })
+    .catch(err => {
+      console.error('Failed to load footer:', err);
+    });
+}
+
+// ========================================
+// DYNAMIC YEAR IN FOOTER
+// ========================================
+function initDynamicYear() {
+  const yearSpans = document.querySelectorAll('[data-year="current"]');
+  if (!yearSpans.length) return;
+  const year = new Date().getFullYear();
+  yearSpans.forEach(span => {
+    span.textContent = year;
+  });
 }
 
 // ========================================

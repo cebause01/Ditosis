@@ -4,7 +4,7 @@
 
 /* ══ Chat Toggle Button ══ */
 .chat-toggle {
-  position: fixed;
+  position: fixed !important;
   bottom: 28px;
   right: 28px;
   width: 56px;
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 32px rgba(0, 245, 160, 0.35);
-  z-index: 1000;
+  z-index: 99998;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .chat-toggle:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(0, 245, 160, 0.5); }
@@ -37,7 +37,7 @@
 
 /* ══ Chat Window ══ */
 .chat-window {
-  position: fixed;
+  position: fixed !important;
   bottom: 96px; right: 28px;
   width: 380px; max-height: 580px;
   background: var(--bg-card);
@@ -45,7 +45,7 @@
   border-radius: 20px;
   box-shadow: 0 24px 64px rgba(0,0,0,.6), 0 0 0 1px rgba(0,245,160,.06);
   display: flex; flex-direction: column;
-  z-index: 999; overflow: hidden;
+  z-index: 99997; overflow: hidden;
   transform: translateY(16px) scale(0.97);
   opacity: 0; pointer-events: none;
   transition: all 0.25s cubic-bezier(.22,1,.36,1);

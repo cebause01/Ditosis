@@ -73,11 +73,12 @@ app.post('/api/chat', async (req, res) => {
       stop: null
     });
 
-    // Collect streamed chunks
     let fullReply = '';
     for await (const chunk of stream) {
       fullReply += chunk.choices[0]?.delta?.content || '';
     }
+
+    fullReply = fullReply.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
 
     res.json({ content: [{ type: 'text', text: fullReply }] });
 

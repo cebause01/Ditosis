@@ -1,12 +1,14 @@
 // ══════════════════════════════════════════════════════
 // DITOSIS CHATBOT — Powered by Ollama (llama3.2)
+// Ensures chat UI mounts after DOM is ready
 // ══════════════════════════════════════════════════════
 (function () {
-
-  // ── 1. Inject HTML if not already in page ────────────
-  if (!document.getElementById('chat-toggle')) {
-    document.body.insertAdjacentHTML('beforeend', `
-      <button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+  function initChatbot() {
+    // ── 1. Inject HTML if not already in page ────────────
+    if (!document.body) return;
+    if (!document.getElementById('chat-toggle')) {
+      document.body.insertAdjacentHTML('beforeend', `
+      <button class="chat-toggle" id="chat-toggle" aria-label="Open chat" style="position:fixed;bottom:28px;right:28px;z-index:99998;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#00F5A0,#00D9F5);color:#000;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,245,160,0.35);">
         <svg class="chat-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
         </svg>
@@ -16,7 +18,7 @@
         <span class="chat-unread" id="chat-unread">1</span>
       </button>
 
-      <div class="chat-window" id="chat-window" aria-hidden="true">
+      <div class="chat-window" id="chat-window" aria-hidden="true" style="position:fixed;bottom:96px;right:28px;z-index:99997;">
         <div class="chat-header">
           <div class="chat-header-left">
             <div class="chat-avatar">
@@ -70,11 +72,11 @@
               </svg>
             </button>
           </div>
-          <p class="chat-footer-note">Ditosis AI Assistant · <a href="/index.html#request">Talk to a human</a></p>
+          <p class="chat-footer-note">Ditosis AI Assistant</p>
         </div>
       </div>
     `);
-  }
+    }
 
   // ── 2. System prompt — tells Llama how to behave ─────
   const SYSTEM_PROMPT = `You are a helpful and friendly customer support assistant for Ditosis, a premium AI data company. Your name is "Diddy Ditosis Assistant".
@@ -144,6 +146,7 @@ Ditosis is an enterprise-grade AI data company that provides three core services
 
   // Format bot reply: convert **bold**, bullet lines, newlines to HTML
   function formatReply(text) {
+    text = text.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
     return text
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')   // escape HTML
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')                       // **bold**
@@ -335,5 +338,11 @@ Ditosis is an enterprise-grade AI data company that provides three core services
   setTimeout(() => {
     addMessage('bot', "👋 Hi! I'm the Diddy Ditosis Assistant. I can help you with questions about our real data, synthetic data generation, and AI model training services.\n\nWhat can I help you with today?");
   }, 700);
+  }
 
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatbot);
+  } else {
+    initChatbot();
+  }
 })();

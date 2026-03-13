@@ -1652,8 +1652,8 @@ a {
    IMPROVED: Smooth page transitions
    ======================================== */
 @keyframes page-fade-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 body {
   animation: page-fade-in 0.4s ease both;
@@ -1780,4 +1780,21 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border-secondary), transparent);
   margin: 0;
+}
+
+/* ========================================
+   CHAT BUTTON FALLBACK (STICKY)
+   ======================================== */
+.chat-toggle {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  width: 56px;
+  height: 56px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00F5A0, #00D9F5);
+  border-radius: 50%;
+  z-index: 99998 !important;
 }
